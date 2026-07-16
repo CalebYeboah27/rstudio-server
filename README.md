@@ -21,3 +21,21 @@ apptainer pull rstudio.sif docker://rocker/tidyverse:latest
 # Return to the login node
 exit
 
+## 2. Create a slurm script
+
+Create a file named start_rstudio_server.slurm in your $WORK/rstudio-env directory:
+
+```bash
+# create a new file
+touch start_rstudio_server.slurm 
+
+# open the file with a file editor
+nano start_rstudio_server.slurm bash
+
+
+Copy the code from the same github filename (start_rstudio_server.slurm) from this repo, paste into your file, save the file ctrl + O, exit nano and run the script bash
+
+```bash 
+# run the script
+sbatch start_rstudio_server.slurm bash
+
