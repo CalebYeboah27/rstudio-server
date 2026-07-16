@@ -33,15 +33,15 @@ Create a file named `start_rstudio_server.slurm` in your $WORK/rstudio-env direc
 touch start_rstudio_server.slurm 
 
 # open the file with a text editor
-nano start_rstudio_server.slurm
+`nano start_rstudio_server.slurm`
 
-Copy the code from the start_rstudio_server.slurm file in this repository and paste it into your file.
+Copy the code from the `start_rstudio_server.slurm` file in this repository and paste it into your file.
 
 To save and exit nano:
 
-Press Ctrl + O to save (Write Out), then press Enter to confirm the file name.
+Press `Ctrl + O` to save (Write Out), then press Enter to confirm the file name.
 
-Press Ctrl + X to exit the editor.
+Press `Ctrl + X` to exit the editor.
 
 # run the script
 ```bash
