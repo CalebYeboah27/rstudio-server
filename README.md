@@ -2,7 +2,7 @@
 
 # Running RStudio Server on SLURM HPC via Apptainer
 
-This guide outlines a complete, root-less workflow for running RStudio Server on a SLURM-managed HPC cluster using Apptainer (formerly Singularity). It includes specific configurations to bypass common HPC permission errors and provides instructions for accessing the server via SSH tunneling on both an iPad and a PC.
+This guide outlines a complete, root-less workflow for running RStudio Server on a SLURM-managed HPC cluster using Apptainer (formerly Singularity). It includes specific configurations to bypass common HPC permission errors and provides instructions for accessing the server via SSH tunneling on an iPad or PC, as well as a local Windows WSL alternative.
 
 ## 1. Pull the Docker Image
 
@@ -10,32 +10,36 @@ To avoid strict thread limits on login nodes (which often kill the `mksquashfs` 
 
 ```bash
 # Request an interactive session
-srun --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=8G --time=01:00:00 --pty bash
+srun --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=8G --time=01:00:00 --pty ```
 
 # Create an environment directory in your workspace
-mkdir -p $WORK/rstudio-env && cd $WORK/rstudio-env
+```bash
+mkdir -p $WORK/rstudio-env && cd $WORK/rstudio-env ```
 
 # Pull the Rocker tidyverse image
-apptainer pull rstudio.sif docker://rocker/tidyverse:latest
+```bash
+apptainer pull rstudio.sif docker://rocker/tidyverse:latest ```
 
 # Return to the login node
 exit
 
-## 2. Create a slurm script
+## 2. Create and Run the SLURM Script
+Create a file named `start_rstudio_server.slurm` in your $WORK/rstudio-env directory:
 
-Create a file named start_rstudio_server.slurm in your $WORK/rstudio-env directory:
-
-```bash
 # create a new file
 touch start_rstudio_server.slurm 
 
-# open the file with a file editor
-nano start_rstudio_server.slurm bash
+# open the file with a text editor
+nano start_rstudio_server.slurm
 
+Copy the code from the start_rstudio_server.slurm file in this repository and paste it into your file.
 
-Copy the code from the same github filename (start_rstudio_server.slurm) from this repo, paste into your file, save the file ctrl + O, exit nano and run the script bash
+To save and exit nano:
 
-```bash 
+Press Ctrl + O to save (Write Out), then press Enter to confirm the file name.
+
+Press Ctrl + X to exit the editor.
+
 # run the script
-sbatch start_rstudio_server.slurm bash
-
+```bash
+sbatch start_rstudio_server.slurm ```
