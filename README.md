@@ -10,15 +10,18 @@ To avoid strict thread limits on login nodes (which often kill the `mksquashfs` 
 
 ```bash
 # Request an interactive session
-srun --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=8G --time=01:00:00 --pty ```
+srun --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=8G --time=01:00:00 --pty 
+```
 
 # Create an environment directory in your workspace
 ```bash
-mkdir -p $WORK/rstudio-env && cd $WORK/rstudio-env ```
+mkdir -p $WORK/rstudio-env && cd $WORK/rstudio-env 
+```
 
 # Pull the Rocker tidyverse image
 ```bash
-apptainer pull rstudio.sif docker://rocker/tidyverse:latest ```
+apptainer pull rstudio.sif docker://rocker/tidyverse:latest 
+```
 
 # Return to the login node
 exit
@@ -42,4 +45,5 @@ Press Ctrl + X to exit the editor.
 
 # run the script
 ```bash
-sbatch start_rstudio_server.slurm ```
+sbatch start_rstudio_server.slurm 
+```
