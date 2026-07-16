@@ -13,7 +13,7 @@ To avoid strict thread limits on login nodes (which often kill the `mksquashfs` 
 srun --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=8G --time=01:00:00 --pty bash
 
 # Create an environment directory in your workspace
-mkdir -p $WORK/rstudio-env && cd$WORK/rstudio-env
+mkdir -p $WORK/rstudio-env && cd $WORK/rstudio-env
 
 # Pull the Rocker tidyverse image
 apptainer pull rstudio.sif docker://rocker/tidyverse:latest
