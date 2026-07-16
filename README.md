@@ -13,26 +13,26 @@ To avoid strict thread limits on login nodes (which often kill the `mksquashfs` 
 srun --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=8G --time=01:00:00 --pty 
 ```
 
-# Create an environment directory in your workspace
+### Create an environment directory in your workspace
 ```bash
 mkdir -p $WORK/rstudio-env && cd $WORK/rstudio-env 
 ```
 
-# Pull the Rocker tidyverse image
+### Pull the Rocker tidyverse image
 ```bash
 apptainer pull rstudio.sif docker://rocker/tidyverse:latest 
 ```
 
-# Return to the login node
+### Return to the login node
 exit
 
 ## 2. Create and Run the SLURM Script
 Create a file named `start_rstudio_server.slurm` in your $WORK/rstudio-env directory:
 
-# create a new file
+### create a new file
 touch start_rstudio_server.slurm 
 
-# open the file with a text editor
+### open the file with a text editor
 `nano start_rstudio_server.slurm`
 
 Copy the code from the `start_rstudio_server.slurm` file in this repository and paste it into your file.
@@ -43,7 +43,7 @@ Press `Ctrl + O` to save (Write Out), then press Enter to confirm the file name.
 
 Press `Ctrl + X` to exit the editor.
 
-# run the script
+### run the script
 ```bash
 sbatch start_rstudio_server.slurm 
 ```
@@ -52,7 +52,7 @@ Run `squeue -u $USER` from the login node of the cluster to check that you have 
 
 Once your job is running, check the generated output log (e.g., cat rstudio_server_*.log) to get your assigned Compute Node, Port, username and Password.
 
-# 3. Accessing from a PC (Windows/Mac/Linux)
+## 3. Accessing from a PC (Windows/Mac/Linux)
 Desktop operating systems have native SSH capabilities, so no third-party apps are required.
 
     1. Open your terminal (PowerShell, Command Prompt, or Mac/Linux Terminal).
