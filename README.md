@@ -47,3 +47,28 @@ Press `Ctrl + X` to exit the editor.
 ```bash
 sbatch start_rstudio_server.slurm 
 ```
+
+Run `squeue -u $USER` from the login node of the cluster to check that you have a job running.
+
+Once your job is running, check the generated output log (e.g., cat rstudio_server_*.log) to get your assigned Compute Node, Port, username and Password.
+
+# 3. Accessing from a PC (Windows/Mac/Linux)
+Desktop operating systems have native SSH capabilities, so no third-party apps are required.
+
+    1. Open your terminal (PowerShell, Command Prompt, or Mac/Linux Terminal).
+
+    2. Run the SSH Tunnel Command, replacing <PORT>, <NODE>, <USERNAME>, and <LOGIN_NODE_ADDRESS> with your specific values.
+
+```bash
+ssh -N -L <PORT>:<NODE>:<PORT> <USERNAME>@<LOGIN_NODE_ADDRESS>
+# Example: ssh -N -L 8136:c2508:8136 user@swan.unl.edu
+```
+
+        👉 -N: Prevents a shell prompt from opening (hangs quietly in the background).
+        👉 -L: Establishes the local port forwarding link.
+
+    3. Authenticate: Enter your HPC password and complete 2FA if prompted. The terminal will hang with a blinking cursor, indicating the tunnel is active.
+
+    4. Connect: Open your web browser and navigate to http://localhost:<PORT>.
+
+    5. Disconnect: When finished, return to the terminal window and press Ctrl + C to sever the tunnel.
